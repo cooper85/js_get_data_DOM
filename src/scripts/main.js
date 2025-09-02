@@ -6,22 +6,29 @@ function populationCalculator() {
   const TOTAL_POPULATION_QS = '.total-population';
   const AVG_POPULATION_QS = '.average-population';
   const elements = document.querySelectorAll(COUNTRY_POPULATION_QS);
-  const totalPopulation = Array.from(elements).reduce(
-    (accumulator, element) =>
-      accumulator + Number.parseInt(element.textContent.replaceAll(',', '')),
-    0,
+  const countriesTotal = Array.from(elements).reduce(
+    (accumulator, element) => {
+      const n = Number.parseInt(element.textContent.replaceAll(',', ''), 10);
+
+      if (Number.isFinite(n)) {
+        accumulator.totalPopulation += n;
+        accumulator.count += 1;
+      }
+    },
+    { totalPopulation: 0, count: 0 },
   );
   const totalPopulationElm = document.querySelector(TOTAL_POPULATION_QS);
 
   if (totalPopulationElm) {
-    totalPopulationElm.innerHTML = totalPopulation.toLocaleString('en-US');
+    totalPopulationElm.innerHTML =
+      countriesTotal.totalPopulation.toLocaleString('en-US');
   }
 
   const averagePopulationElm = document.querySelector(AVG_POPULATION_QS);
 
   if (averagePopulationElm) {
     averagePopulationElm.innerHTML = Math.round(
-      totalPopulation / elements.length,
+      countriesTotal.totalPopulation / countriesTotal.count,
     ).toLocaleString('en-US');
   }
 }
