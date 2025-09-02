@@ -14,6 +14,8 @@ function populationCalculator() {
         accumulator.totalPopulation += n;
         accumulator.count += 1;
       }
+
+      return accumulator;
     },
     { totalPopulation: 0, count: 0 },
   );
