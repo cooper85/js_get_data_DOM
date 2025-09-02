@@ -1,0 +1,2 @@
+"use strict";function populationCalculator(){var t=document.querySelectorAll(".container > .list > .list__item > .population"),e=Array.from(t).reduce(function(t,e){return t+Number.parseInt(e.textContent.replaceAll(",",""))},0),o=document.querySelector(".total-population");o&&(o.innerHTML=e.toLocaleString("en-US"));var n=document.querySelector(".average-population");n&&(n.innerHTML=Math.round(e/t.length).toLocaleString("en-US"))}populationCalculator();
+//# sourceMappingURL=js_get_data_DOM.7ace90f9.js.map
